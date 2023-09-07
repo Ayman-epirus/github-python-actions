@@ -34,7 +34,7 @@ jobs:
       - name: Create Virtual Env and Activate it
         run: |
               python -m venv env
-              env/bin/activate
+              env/Scripts/activate
               echo "VIRTUAL ENV:" $VIRTUAL_ENV
 
       - name: Install Dependencies
