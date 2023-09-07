@@ -1,0 +1,32 @@
+-i https://pypi.org/simple
+--extra-index-url https://pip.epir.us/simple
+matplotlib==3.3.4
+numpy>=1.20.1
+pywin32==228; sys_platform=='win32'
+python-pptx==0.6.21
+tkfilebrowser==2.3.2
+PyQt5==5.15.2; sys_platform=='win32'
+paramiko==2.11.0
+scp==0.13.2
+scipy==1.7.1
+pandas==1.3.5
+PyYAML==5.4.1
+tqdm==4.62.0
+certifi==2020.6.20
+chardet==3.0.4
+idna==2.10
+requests==2.27.1
+urllib3==1.26.0
+reportlab==3.6.9
+rich==12.0.0
+seaborn==0.12.2
+mock==4.0.3
+getmac==0.8.3
+GitPython==3.1.27
+epiraws==0.0.15
+mfgion==0.1.3
+lab-controllers==0.2.35
+pyvisa==1.11.3
+pyvisa-py==0.5.2
+epirus-hw-controllers==1.0.1
+pyserial==3.5
