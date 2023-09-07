@@ -30,3 +30,20 @@ jobs:
         with:
           # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
           python-version: 3.9
+
+      - name: Create Virtual Env and Activate it
+        run: |
+              python -m venv env
+              source env/bin/activate
+              echo "VIRTUAL ENV:" $VIRTUAL_ENV
+
+      - name: Install Dependencies
+        run: |
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            echo "VIRTUAL ENV:" $VIRTUAL_ENV
+
+      - name: Run Simple File
+        run: |
+          python test.py
+          echo "VIRTUAL ENV:" $VIRTUAL_ENV
