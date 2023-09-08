@@ -18,8 +18,18 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
+<<<<<<< HEAD
     runs-on: test1
 
+=======
+    runs-on: test-runner1
+    strategy:
+      matrix:
+        # python version coverage
+        python-version: ["3.7", "3.8", "3.9"] #"3.10","3.11" fail pip install
+      fail-fast: false
+  
+>>>>>>> 226101aa3fbee2b1771b06e0cebc5e21d18d21ea
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -29,7 +39,7 @@ jobs:
         uses: actions/setup-python@v4.7.0
         with:
           # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
-          python-version: 3.9
+          python-version: ${{ matrix.python-version }}
 
       - name: Create Virtual Env and Activate it
         run: |
@@ -39,11 +49,11 @@ jobs:
 
       - name: Install Dependencies
         run: |
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            echo "VIRTUAL ENV:" $VIRTUAL_ENV
+              pip install --upgrade pip
+              pip install -r requirements.txt
+              echo "VIRTUAL ENV:" $VIRTUAL_ENV
 
       - name: Run Simple File
         run: |
-          python test.py
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
+              python test.py
+              echo "VIRTUAL ENV:" $VIRTUAL_ENV
