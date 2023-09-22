@@ -1,0 +1,41 @@
+name: Lint - Black
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-linters:
+    if: true
+    name: Run linters
+    runs-on: self-hosted
+    strategy:
+        matrix:
+          # python version coverage
+          python-version: ["3.9"]
+        fail-fast: false
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Create Virtual Env
+        run: |
+              py -${{ matrix.python-version }} -m venv env
+              env/Scripts/activate
+        
+      - name: Install Python dependencies
+        run: |
+              env/Scripts/activate
+              pip install black
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          black: true
+          black_args: "--line-length 79"

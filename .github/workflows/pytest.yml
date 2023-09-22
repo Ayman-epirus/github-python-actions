@@ -1,0 +1,50 @@
+name: Lint, Build and Test
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  build:
+    if: false     
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9"] 
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create Virtual Env
+        run: |
+              py -${{ matrix.python-version }} -m venv env
+              env/Scripts/activate
+
+      - name: Install Dependencies
+        run: |
+              env/Scripts/activate
+              pip install --upgrade pip
+              pip install -r requirements.txt
+
+      - name: Run Simple File
+        run: |
+              env/Scripts/activate
+              python test.py
+               
+
+      - name: Delete env
+        run:  rm -r env
+
+
+      # next step
+      # add pytest coverage 
+      # automate PR based on conditions i.e pytest pass
+      # automate application deployment into STEs
