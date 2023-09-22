@@ -39,3 +39,5 @@ jobs:
         with:
           black: true
           black_args: "--line-length 79"
+          auto_fix: true
+          commit: true
